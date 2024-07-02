@@ -37,7 +37,7 @@ class UNet(nn.Module):
         self.final = nn.Sequential(nn.Conv2d(num_feat[0],
                                              num_classes,
                                              kernel_size=1),
-                                   nn.Softmax2d())
+                                   nn.Sigmoid())
 
     def forward(self, inputs, return_features=False):
         # print(inputs.data.size())
@@ -78,9 +78,9 @@ class UNet(nn.Module):
 
 
 class UNetSmall(nn.Module):
-    def __init__(self, num_channels=1, num_classes=2):
+    def __init__(self, num_channels=1, num_classes=2 , min_channel=4):
         super(UNetSmall, self).__init__()
-        num_feat = [32, 64, 128, 256]
+        num_feat = [min_channel, min_channel * 2, min_channel * 4, min_channel * 8]
 
         self.down1 = nn.Sequential(Conv3x3Small(num_channels, num_feat[0]))
 

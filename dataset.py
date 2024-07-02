@@ -24,7 +24,7 @@ class ToSingleChannel(albu.ImageOnlyTransform):
 def get_training_augmentation():
     train_transform = [
         #albu.ShiftScaleRotate(scale_limit=0.5, rotate_limit=0, shift_limit=0.1, p=1, border_mode=0),
-        albu.Resize(320, 320, always_apply=True),
+        albu.Resize(320, 640, always_apply=True),
         #albu.IAAAdditiveGaussianNoise(p=0.2),
         #albu.IAAPerspective(p=0.5),
         #albu.RandomSizedCrop(min_max_height=(120, 220), height=320, width=320, p=0.25),
@@ -43,7 +43,7 @@ def get_training_augmentation():
 def get_validation_augmentation():
     """Add paddings to make image shape divisible by 32"""
     test_transform = [
-        albu.Resize(320, 320, always_apply=True),
+        albu.Resize(320, 640, always_apply=True),
         
 
     ]
@@ -95,7 +95,7 @@ class SegmentationDataset(Dataset):
         mask = self.create_mask(image_id, self.img_labels['annotations'], image.size)
 
       
-        image, mask = self.pad_to_square(image, mask)
+        #image, mask = self.pad_to_square(image, mask)
 
         image = np.array(image)
         if image.ndim == 2: 
