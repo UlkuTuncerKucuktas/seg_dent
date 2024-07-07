@@ -1,0 +1,6 @@
+path: /content/yolo_data  # path to the dataset folder
+train: images/train  # directory with training images
+val: images/val  # directory with validation images
+
+nc: 1  # number of classes in the dataset
+names: ['lesion']  # list of class names
